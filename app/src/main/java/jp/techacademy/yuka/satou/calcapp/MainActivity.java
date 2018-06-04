@@ -1,6 +1,8 @@
 package jp.techacademy.yuka.satou.calcapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -59,9 +61,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
         catch (Exception e) {
-            TextView textView = (TextView) findViewById(R.id.textView);
-            textView.setText("何か数値を入力してください！！！！");
+            //Snackbar.make(v, "数値を入力してください！！", Snackbar.LENGTH_INDEFINITE).show();
+
+            showAlertDialog();
         }
 
+    }
+
+    private void showAlertDialog() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        //alertDialogBuilder.setTitle("title");
+        alertDialogBuilder.setMessage("数値を入力してください！！");
+
+//        alertDialogBuilder.setPositiveButton("OK",
+//                new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        Log.d("javatest", "ok");
+//                    }
+//                }
+//        );
+
+        alertDialogBuilder.setPositiveButton("OK", null);
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 }
