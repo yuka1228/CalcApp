@@ -2,6 +2,7 @@ package jp.techacademy.yuka.satou.calcapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,15 +55,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("VALUE", result);
                 startActivity(intent);
             } else if (v.getId() == R.id.button4) {
-                double result = value1 / value2;
-                Intent intent = new Intent(this, SecondActivity.class);
-                intent.putExtra("VALUE", result);
-                startActivity(intent);
+                if (value2 == 0) {
+                    Snackbar.make(v, "0では割れません", Snackbar.LENGTH_INDEFINITE).show();
+                } else {
+                    double result = value1 / value2;
+                    Intent intent = new Intent(this, SecondActivity.class);
+                    intent.putExtra("VALUE", result);
+                    startActivity(intent);
+                }
             }
         }
         catch (Exception e) {
-            //Snackbar.make(v, "数値を入力してください！！", Snackbar.LENGTH_INDEFINITE).show();
-
             showAlertDialog();
         }
 
